@@ -181,6 +181,13 @@
                 images = easyImages;
                 currentDifficulty = 'easy';
             }
+             if (currentDifficulty === 'easy') {
+                        document.getElementById('credits').textContent = 'Credits to Gato :) for images';
+                    } else if (currentDifficulty === 'hard') {
+                        document.getElementById('credits').textContent = 'Credits to Folderist for images';
+                    }
+                
+             
 
             let categoryChoice = Math.random() < 0.5 ? 'Parts' : 'Species';
             currentCategory = categoryChoice === 'Parts' ? 'Part' : 'Species';
@@ -195,16 +202,11 @@
             document.getElementById('difficulty').classList.remove('active');
             document.getElementById('game').classList.add('active');
             document.getElementById('hangman-image').src = images[0];
-            document.getElementById('credits').textContent = ''; // Make sure to clear credits at the start of the game
-            if (currentDifficulty === 'easy') {
-                        document.getElementById('credits').textContent = 'Credits to Gato :) for images';
-                    } else if (currentDifficulty === 'hard') {
-                        document.getElementById('credits').textContent = 'Credits to Folderist for images';
-                    }
-                }
+
         }
 
         function guessLetter() {
+      
             const letterInput = document.getElementById('letter-input');
             const letter = letterInput.value.toUpperCase();
             letterInput.value = '';
@@ -265,6 +267,7 @@
         function viewInstructions() {
             alert("Instructions: Guess the word by selecting letters. You have limited attempts based on the selected difficulty.");
         }
+       
     </script>
 </body>
 </html>
