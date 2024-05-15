@@ -192,7 +192,12 @@
             document.getElementById('difficulty').classList.remove('active');
             document.getElementById('game').classList.add('active');
             document.getElementById('hangman-image').src = images[0];
-            document.getElementById('credits').textContent = '';
+                    if (currentDifficulty === 'easy') {
+                        document.getElementById('credits').textContent = 'Credits to Gato for the images';
+                    } else if (currentDifficulty === 'hard') {
+                        document.getElementById('credits').textContent = 'Credits to Folderist for the images';
+                    }
+                }
         }
 
         function guessLetter() {
@@ -255,7 +260,7 @@
             document.getElementById('wrong-letters').textContent = 'Wrong letters: ';
             document.getElementById('game-result').textContent = '';
             document.getElementById('game-result').classList.remove('winner');
-            images = [];
+            images = []
         }
 
         function viewInstructions() {
