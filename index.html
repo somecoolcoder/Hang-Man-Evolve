@@ -23,6 +23,7 @@
             border-radius: 8px;
             animation: float 6s ease-in-out infinite;
             display: none;
+            position: relative;
         }
         #menu.active, #difficulty.active, #game.active {
             display: block;
@@ -76,7 +77,9 @@
         }
         #credits {
             font-size: 14px;
-            margin-top: 10px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
         @keyframes float {
             0%, 100% {
@@ -120,7 +123,7 @@
         <button class="menu-button" onclick="guessLetter()">Guess</button>
         <div id="wrong-letters">Wrong letters: </div>
         <div id="game-result"></div>
-        <div id="credits"></div>
+        <div id="credits">Credits:</div>
         <button class="menu-button" onclick="resetGame()">Restart</button>
     </div>
 
@@ -192,12 +195,7 @@
             document.getElementById('difficulty').classList.remove('active');
             document.getElementById('game').classList.add('active');
             document.getElementById('hangman-image').src = images[0];
-                    if (currentDifficulty === 'easy') {
-                        document.getElementById('credits').textContent = 'Credits to Gato for the images';
-                    } else if (currentDifficulty === 'hard') {
-                        document.getElementById('credits').textContent = 'Credits to Folderist for the images';
-                    }
-                }
+            document.getElementById('credits').textContent = ''; // Make sure to clear credits at the start of the game
         }
 
         function guessLetter() {
@@ -224,9 +222,9 @@
                     document.getElementById('letter-input').disabled = true;
 
                     if (currentDifficulty === 'easy') {
-                        document.getElementById('credits').textContent = 'Credits to Gato for the images';
+                        document.getElementById('credits').textContent = 'Credits to Gato :) for images';
                     } else if (currentDifficulty === 'hard') {
-                        document.getElementById('credits').textContent = 'Credits to Folderist for the images';
+                        document.getElementById('credits').textContent = 'Credits to Folderist for images';
                     }
                 }
             } else {
@@ -260,7 +258,8 @@
             document.getElementById('wrong-letters').textContent = 'Wrong letters: ';
             document.getElementById('game-result').textContent = '';
             document.getElementById('game-result').classList.remove('winner');
-            images = []
+            document.getElementById('credits').textContent = ''; // Ensure credits are cleared when resetting
+            images = [];
         }
 
         function viewInstructions() {
