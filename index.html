@@ -23,7 +23,6 @@
             border-radius: 8px;
             animation: float 6s ease-in-out infinite;
             display: none;
-            position: relative;
         }
         #menu.active, #difficulty.active, #game.active {
             display: block;
@@ -72,6 +71,13 @@
             margin-top: 20px;
             color: red;
         }
+        .winner {
+            color: green;
+        }
+        #credits {
+            font-size: 14px;
+            margin-top: 10px;
+        }
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -87,13 +93,6 @@
             50% {
                 transform: scale(1.05);
             }
-        }
-        #credits {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 12px;
-            color: #555;
         }
     </style>
 </head>
@@ -114,15 +113,15 @@
         <h1>Guess the Word!</h1>
         <div id="category-display">Category: </div>
         <div id="image-container">
-            <img src="https://cdn.discordapp.com/attachments/1240219119840923678/1240221679154888735/123_20240515152413.png" alt="Hangman Image" id="hangman-image">
+            <img src="https://cdn.discordapp.com/attachments/1240219119840923678/1240221679154888735/123_20240515152413.png?ex=6645c5f2&is=66447472&hm=e7527956b274b500291bc4ccf4628955abc3cfe3f0e91944e1c2c27a1414f973&" alt="Hangman Image" id="hangman-image">
         </div>
         <div id="word-display">_ _ _ _ _ _ _</div>
         <input type="text" id="letter-input" maxlength="1">
         <button class="menu-button" onclick="guessLetter()">Guess</button>
         <div id="wrong-letters">Wrong letters: </div>
         <div id="game-result"></div>
-        <button class="menu-button" onclick="resetGame()">Restart</button>
         <div id="credits"></div>
+        <button class="menu-button" onclick="resetGame()">Restart</button>
     </div>
 
     <script>
@@ -142,45 +141,42 @@
             "Polymer", "Thrasher", "Snare", "Stingray", "Sabertooth", "Mako", "Lepidoptera", "Matriarch"
         ];
 
-        const easyImages = [
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679154888735/123_20240515152413.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679482048512/123_20240515152422.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679758868571/123_20240515152430.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680065056768/123_20240515152436.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680320905226/123_20240515152440.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680681353336/123_20240515152445.png",
-            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680975220756/123_20240515152451.png"
-        ];
-
         const hardImages = [
-            "IMG_2166.png",
-            "https://cdn.discordapp.com/attachments/1153370590183432255/1240217131522461797/image.png",
-            "https://cdn.discordapp.com/attachments/1153370590183432255/1240217131929436191/image.png"
+            "https://cdn.discordapp.com/attachments/1153370590183432255/1240217131216404591/image.png?ex=6645c1b6&is=66447036&hm=e628fc82eeac60a31dc154c7048c3e304b11a0c227f93eb52d71520479ae7969&",
+            "https://cdn.discordapp.com/attachments/1153370590183432255/1240217131522461797/image.png?ex=6645c1b6&is=66447036&hm=9fb57cd668bcbde25e1c3dd3ae33d574fa1bb535ad78bfaec90859b9405dadff&",
+            "https://cdn.discordapp.com/attachments/1153370590183432255/1240217131929436191/image.png?ex=6645c1b6&is=66447036&hm=c7c32e23559e0edc726fb7713877290a9f1d086261cb056ccac8a42a04e1e27f&"
         ];
 
+        const easyImages = [
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679154888735/123_20240515152413.png?ex=6645c5f2&is=66447472&hm=e7527956b274b500291bc4ccf4628955abc3cfe3f0e91944e1c2c27a1414f973&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679482048512/123_20240515152422.png?ex=6645c5f2&is=66447472&hm=c02b4a327f8636d720386aaeb6bf30ac2b6583d60eb6c6953ea6ae9e95dc0138&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221679758868571/123_20240515152430.png?ex=6645c5f2&is=66447472&hm=98ccca19ad74862076e666445a0f858abd3d8e5d658075a88a97f6cf93cd302e&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680065056768/123_20240515152436.png?ex=6645c5f2&is=66447472&hm=9e42ad04923ed0bef3ded83042d9aa849667f510ab7b3e9358165a3ea86041e9&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680320905226/123_20240515152440.png?ex=6645c5f2&is=66447472&hm=db4dfec27965185082500b96f19df54e93be04c0b1fb39bcf901ff7000fec9bd&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680681353336/123_20240515152445.png?ex=6645c5f2&is=66447472&hm=76a10ec7ac13521313bdbf282ab2cc614604d48831aec0f1ed33da36831d7927&",
+            "https://cdn.discordapp.com/attachments/1240219119840923678/1240221680975220756/123_20240515152451.png?ex=6645c5f2&is=66447472&hm=c4d8f7a026985db053ac6c7ca3b061520e74579404ddddcbdd18ab830ca3a8ce&"
+        ];
+
+        let images = [];
         let selectedWord = '';
         let guessedWord = '';
         let mistakes = 0;
         let wrongLetters = [];
         let currentCategory = '';
-        let currentImages = [];
+        let currentDifficulty = '';
 
         function showDifficulty() {
             document.getElementById('menu').classList.remove('active');
             document.getElementById('difficulty').classList.add('active');
         }
 
-        function viewInstructions() {
-            alert("Instructions:\nGuess the word by selecting letters. You have limited attempts before the Creature is complete.");
-        }
-
         function startGame(difficulty) {
-            if (difficulty === 'easy') {
-                currentImages = easyImages[0];
-                document.getElementById('credits').textContent = "Credits to Gato :) for images";
-            } else if (difficulty === 'hard') {
-                currentImages = hardImages[0];
-                document.getElementById('credits').textContent = "Credits to Folderist for images";
+            if (difficulty === 'hard') {
+                images = hardImages;
+                currentDifficulty = 'hard';
+            } else if (difficulty === 'easy') {
+                images = easyImages;
+                currentDifficulty = 'easy';
             }
 
             let categoryChoice = Math.random() < 0.5 ? 'Parts' : 'Species';
@@ -193,48 +189,53 @@
             document.getElementById('word-display').textContent = guessedWord.trim();
             document.getElementById('category-display').textContent = `Category: ${currentCategory}`;
 
-            document.getElementById('hangman-image').src = currentImages[0];
-            mistakes = 0;
-            wrongLetters = [];
-            document.getElementById('wrong-letters').textContent = 'Wrong letters: ';
-            document.getElementById('game-result').textContent = '';
-
             document.getElementById('difficulty').classList.remove('active');
             document.getElementById('game').classList.add('active');
+            document.getElementById('hangman-image').src = images[0];
+            document.getElementById('credits').textContent = '';
         }
 
         function guessLetter() {
             const letterInput = document.getElementById('letter-input');
             const letter = letterInput.value.toUpperCase();
             letterInput.value = '';
+            letterInput.focus();
 
-            if (letter && !wrongLetters.includes(letter) && !guessedWord.includes(letter)) {
-                if (selectedWord.includes(letter)) {
-                    let newGuessedWord = '';
-                    for (let i = 0; i < selectedWord.length; i++) {
-                        if (selectedWord[i] === letter) {
-                            newGuessedWord += letter + ' ';
-                        } else {
-                            newGuessedWord += guessedWord[i * 2] + ' ';
-                        }
+            if (selectedWord.includes(letter)) {
+                let updatedGuessedWord = '';
+                for (let i = 0; i < selectedWord.length; i++) {
+                    if (selectedWord[i] === letter) {
+                        updatedGuessedWord += letter + ' ';
+                    } else {
+                        updatedGuessedWord += guessedWord[i * 2] + ' ';
                     }
-                    guessedWord = newGuessedWord;
-                    document.getElementById('word-display').textContent = guessedWord.trim();
+                }
+                guessedWord = updatedGuessedWord;
+                document.getElementById('word-display').textContent = guessedWord.trim();
 
-                    if (!guessedWord.includes('_')) {
-                        document.getElementById('game-result').textContent = 'You Won!';
+                if (!guessedWord.includes('_')) {
+                    document.getElementById('game-result').textContent = 'You won! The word was: ' + selectedWord;
+                    document.getElementById('game-result').classList.add('winner');
+                    document.getElementById('letter-input').disabled = true;
+
+                    if (currentDifficulty === 'easy') {
+                        document.getElementById('credits').textContent = 'Credits to Gato for the images';
+                    } else if (currentDifficulty === 'hard') {
+                        document.getElementById('credits').textContent = 'Credits to Folderist for the images';
                     }
-                } else {
+                }
+            } else {
+                if (!wrongLetters.includes(letter)) {
                     wrongLetters.push(letter);
                     document.getElementById('wrong-letters').textContent = 'Wrong letters: ' + wrongLetters.join(', ');
 
                     mistakes++;
-                    document.getElementById('hangman-image').src = currentImages[mistakes];
-
-                    if (mistakes === currentImages.length - 1) {
-                        document.getElementById('game-result').textContent = 'You Lost!';
-                        guessedWord = selectedWord.split('').join(' ');
-                        document.getElementById('word-display').textContent = guessedWord;
+                    if (mistakes < images.length) {
+                        document.getElementById('hangman-image').src = images[mistakes];
+                    } else {
+                        document.getElementById('hangman-image').src = images[images.length - 1];
+                        document.getElementById('game-result').textContent = 'Game over! The word was: ' + selectedWord;
+                        document.getElementById('letter-input').disabled = true;
                     }
                 }
             }
@@ -243,6 +244,23 @@
         function resetGame() {
             document.getElementById('game').classList.remove('active');
             document.getElementById('menu').classList.add('active');
+            mistakes = 0;
+            guessedWord = '';
+            selectedWord = '';
+            wrongLetters = [];
+            currentCategory = '';
+            currentDifficulty = '';
+            document.getElementById('letter-input').value = '';
+            document.getElementById('letter-input').disabled = false;
+            document.getElementById('wrong-letters').textContent = 'Wrong letters: ';
+            document.getElementById('game-result').textContent = '';
+            document.getElementById('game-result').classList.remove('winner');
+            document.getElementById('credits').textContent = '';
+            images = [];
+        }
+
+        function viewInstructions() {
+            alert("Instructions: Guess the word by selecting letters. You have limited attempts based on the selected difficulty.");
         }
     </script>
 </body>
