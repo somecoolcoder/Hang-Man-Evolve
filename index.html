@@ -176,10 +176,10 @@
 
         function startGame(difficulty) {
             if (difficulty === 'easy') {
-                currentImages = easyImages;
+                currentImages = easyImages[0];
                 document.getElementById('credits').textContent = "Credits to Gato :) for images";
             } else if (difficulty === 'hard') {
-                currentImages = hardImages;
+                currentImages = hardImages[0];
                 document.getElementById('credits').textContent = "Credits to Folderist for images";
             }
 
